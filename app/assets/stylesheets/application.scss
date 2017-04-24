@@ -1,0 +1,10 @@
+/*
+ *= require application/global/reset
+ *= require_self
+ *= require_tree ./application/global
+ *= require_tree ./application/elements
+ *= require_tree ./application/components
+ */
+
+html { font-family: 'Roboto', sans-serif; font-size:14px; overflow-y:scroll; background:#efefef;}
+html.subPage { background:#42494c; color:#fff;}

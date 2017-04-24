@@ -1,0 +1,25 @@
+.mainHeader {
+  background:#42494c;
+  color:#fff;
+  padding:15px 45px;
+  color:#777;
+  overflow: hidden;
+}
+
+.mainHeader__logo {
+  float:left;
+  font-weight:600;
+  color:#fff;
+}
+
+.mainHeader__nav {
+  float:right;
+  li {
+    float:left;
+    margin-left:25px;
+    a {
+      text-decoration: none;
+      color:#fff;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+- @page_title = "Signup"
+= display_flash
+.loginForm
+  %h1.loginForm__welcome Create your Budgets account.
+  %p.loginForm__welcomeText
+    To get started with Budgets, you just need to create yourself an account.
+    When created, you'll be able to create your own budgets!
+  = form_for @user, :url => signup_path do |f|
+    = f.error_messages :header_message => ""
+    = hidden_field_tag 'return_to', params[:return_to]
+    %dl.loginForm__fieldSet
+      %dt.loginForm__label= f.label :email_address, "What's your e-mail address?"
+      %dd.loginForm__input= f.text_field :email_address, :class => 'loginForm__inputField', :autofocus => true, :required => true
+
+      %dt.loginForm__label= f.label :password, "Choose a password"
+      %dd.loginForm__input= f.password_field :password, :class => 'loginForm__inputField', :required => true
+      %dt.loginForm__label= f.label :first_name, "What's your name?"
+      %dd.loginForm__input
+        = f.text_field :first_name, :class => 'loginForm__inputField loginForm__inputField--double', :required => true, :placeholder => "First Name"
+        = f.text_field :last_name, :class => 'loginForm__inputField loginForm__inputField--double', :required => true, :placeholder => "Last Name"
+
+      %dd.loginForm__submit
+        = submit_tag "Signup", :class => 'button button--green  button--small'
+        = link_to "Cancel", params[:return_to] || "http://budgets.io", :class => 'button button--greyBlue  button--small'

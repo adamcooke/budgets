@@ -1,0 +1,15 @@
+.mainFooter {
+  padding:35px 45px;
+  font-size:12px;
+  line-height:1.8;
+  color:#aaa;
+  border-top:1px solid #ddd;
+}
+
+.mainFooter__nav {
+  float:right;
+  li {
+    float:left;
+    margin-left:15px;
+  }
+}

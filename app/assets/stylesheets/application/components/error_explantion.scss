@@ -1,0 +1,19 @@
+.errorExplanation {
+  background:#fff3f3;
+  border:1px solid #dda4a4;
+  margin-bottom:15px;
+  color:#c92828;
+  padding:15px;
+  h2 {
+    font-size:16px;
+    font-weight:600;
+    margin-bottom:5px;
+  }
+  p { display:none; }
+  ul {
+    li {
+      list-style:square;
+      margin-left:15px;
+    }
+  }
+}

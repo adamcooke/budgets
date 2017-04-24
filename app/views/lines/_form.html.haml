@@ -1,0 +1,47 @@
+= form_for @line, :url => @line.new_record? ? lines_path(budget) : line_path(budget, @line) do |f|
+  = f.error_messages
+  = hidden_field_tag 'return_to', params[:return_to]
+  = hidden_field_tag 'account', params[:account]
+  = hidden_field_tag 'period', params[:period]
+  .fieldSet.u-margin
+    .fieldSet__field
+      .fieldSet__label= f.label :description
+      .fieldSet__input= f.text_field :description, :autofocus => true, :required => true, :class => 'fieldSet__inputField'
+    .fieldSet__group.clearfix
+      .fieldSet__field
+        .fieldSet__label= f.label :amount
+        .fieldSet__input= f.text_field :amount, :required => true, :class => 'fieldSet__inputField'
+      .fieldSet__field
+        .fieldSet__label= f.label :date
+        .fieldSet__input= f.text_field :date, :required => true, :class => 'fieldSet__inputField js-datepicker'
+
+    - unless @line.recurring_parent
+      .fieldSet__field
+        .fieldSet__label= f.label :recurring, "Should this item repeat each month from now?"
+        .fieldSet__input= f.select :recurring, [["No - this should only exist for this month", false], ["Yes - repeat this transaction every month", true]], {}, :class => 'fieldSet__selectField js-toggler', :data => {:target => '.js-monthsToRecur', :value => 'false'}
+
+      .fieldSet__field.js-monthsToRecur{:class => ('u-hidden' unless @line.recurring)}
+        .fieldSet__label= f.label :months_to_recur, "How many months in the future should this repeat?"
+        .fieldSet__input= f.text_field :months_to_recur, :class => 'fieldSet__inputField', :placeholder => "(Leave blank to recur until end of period)"
+
+
+  - if @line.recurring?
+    %p.u-margin.noticeBox
+      This line automatically repeats for another #{pluralize @line.months_to_recur || @line.maximum_number_of_months_to_recur, 'month'}. If
+      you edit this line, the changes will be applied to all future lines too.
+
+  - if @line.recurring_parent
+    .noticeBox.noticeBox--yellow.u-margin
+      %p.u-margin
+        %b This line is part of a recurring set which was started on #{@line.recurring_parent.date.to_s(:long)}.
+        If you make a change to this line, it will create a new recurring set. This means this line and all
+        future lines in the original set will match this one and will be detached from the original set.
+      %p
+        Alternatively, you can #{link_to "edit the parent line", edit_line_path(budget, @line.recurring_parent)} which
+        will ensure changes are made to all items in the set.
+
+  %p.buttonSet.paperPage__footer
+    - if @line.persisted? && !@line.recurring_parent
+      %span.u-float-right= link_to "Delete", line_path(budget, @line), :class => 'button button--red', :method => :delete, :data => {:confirm => "Are you sure you want to remove this line?"}
+    = f.submit "Save transaction", :class => 'button button--green', :data => {:confirm => @line.recurring_parent ? "Are you sure you want to make this change? Ensure you have read the details above before continuing." : nil}
+    = link_to "Cancel", params[:return_to] || grid_path(budget, :period => @period), :class => 'button'

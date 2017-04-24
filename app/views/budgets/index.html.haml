@@ -1,0 +1,37 @@
+- @page_title = "Welcome"
+.paperPage
+  .paperPage__heading
+    %h1.u-heading Welcome to Budgets
+  - if @budgets.empty?
+    .row.row--noPadding
+      .col.col--10
+        %p.u-infoText.u-margin
+          Budgets is a tool to help you create budgets & forecasts for companies & projects. To
+          being you'll need to create your first budget. Just click the button
+          below and we'll get you up and running.
+        %p= link_to "Create your first budget", new_budget_path, :class => 'button button--green'
+      .col.col--2
+        &nbsp;
+      .col.col--8.u-align-center
+        = image_tag 'welcome.svg', :width => "80%"
+
+  - else
+    %p.u-infoText.u-margin
+      Budgets is a tool to help you create budgets & forecasts for companies & projects.
+      You can have as many budgets on your account as you wish. Choose a budget
+      from below to begin.
+    %table.dataTable.u-margin
+      %thead
+        %tr
+          %td Name
+          %td Periods
+          %td
+      %tbody
+        - for budget in @budgets
+          %tr
+            %td= link_to budget.name, grid_path(budget)
+            %td= budget.periods.size
+            %td.u-align-right= link_to "Edit", edit_budget_path(budget)
+
+    .paperPage__footer
+      %p= link_to "Create New Budget", new_budget_path, :class => 'button button--green'

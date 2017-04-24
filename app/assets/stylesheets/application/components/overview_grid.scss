@@ -1,0 +1,81 @@
+.overviewGrid {
+  width:100%;
+  td {
+    border:1px solid #ddd;
+    background:#fff;
+    padding:7px;
+  }
+}
+
+.overviewGrid__monthNumberCell {
+  border:0 !important;
+  font-size:11px;
+  text-align: center;
+  background:none !important;
+  color:#aaa;
+  padding:0 0 3px 0 !important;
+}
+
+.overviewGrid__accountTypeCell {
+  font-weight:bold;
+}
+
+.overviewGrid__moneyCell {
+  text-align: right;
+}
+
+.overviewGrid__monthTitleCell {
+  background:#efefef;
+  font-weight:bold;
+  text-align: center;
+  border-bottom:2px solid #42494C !important;
+  &.is-now {
+    background-color:#f0ffdf;
+    color:#7fcd2b;
+    border-bottom:2px solid #7fcd2b !important;
+  }
+}
+
+.overviewGrid__accountTypeCell {
+}
+
+.overviewGrid__accountRow:hover td {
+  background-color:#ffffe3;
+}
+
+.overviewGrid__incomingHeadingRow {
+  td {
+    background:#e8f8ff;
+    border-top:2px solid #249cd4;
+    color:#5b9cbb;
+  }
+}
+
+.overviewGrid__incomingMonthlyTotalRow {
+  td {
+    background:#e8f8ff;
+    color:#5b9cbb;
+  }
+}
+
+
+.overviewGrid__outgoingHeadingRow {
+  td {
+    background:#fff5fa;
+    border-top:2px solid #e1207f;
+    color:#b94f83;
+  }
+}
+
+.overviewGrid__outgoingMonthlyTotalRow {
+  td {
+    background:#fff5fa;
+    color:#b94f83;
+  }
+}
+
+.overviewGrid__noAccountsCell {
+  color:#999;
+  font-style:italic;
+  font-size:13px;
+}

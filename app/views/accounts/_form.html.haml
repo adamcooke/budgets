@@ -1,0 +1,16 @@
+= form_for @account, :url => @account.new_record? ? accounts_path(budget) : account_path(budget, @account) do |f|
+  = hidden_field_tag 'return_to', params[:return_to]
+  = f.error_messages
+  .fieldSet.u-margin
+    .fieldSet__field
+      .fieldSet__label= f.label :name
+      .fieldSet__input= f.text_field :name, :class => 'fieldSet__inputField', :autofocus => true, :required => true
+    .fieldSet__field
+      .fieldSet__label= f.label :account_type
+      .fieldSet__input= f.select :account_type, Account::TYPES.map { |t| [t.humanize, t]}, {}, :class => 'fieldSet__selectField'
+
+  %p.paperPage__footer.buttonSet
+    - if @account.persisted?
+      %span.u-float-right= link_to "Delete", account_path(budget, @account), :class => 'button button--red', :method => :delete, :data => {:confirm => "Are you sure you want to delete this account and all data within it?"}
+    = f.submit "Save Account", :class => "button button--green"
+    = link_to "Cancel", accounts_path(budget), :class => 'button'

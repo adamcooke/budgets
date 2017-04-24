@@ -1,0 +1,43 @@
+.paperPage
+  .paperPage__heading.u-margin
+
+    %p.u-float-right.buttonSet--onRight
+      = link_to "Add transaction", new_line_path(budget, :period => @period, :month => params[:month],:account => @account, :return_to => request.fullpath), :class => 'button button--green'
+      = link_to "Back", grid_path(budget, :period => @period), :class => 'button'
+    %h1.u-heading= @page_title = "Transactions for #{@account.name}"
+    - if @date
+      %h2.pageContent__subHeading Month #{params[:month]} &mdash; #{@date.to_s(:long)} to #{@date.end_of_month.to_s(:long)}
+
+  = form_tag bulk_lines_path(budget) do
+    = hidden_field_tag 'return_to', request.fullpath
+    %table.dataTable.js-bulkActionsTable
+      %thead
+        %tr
+          %td{:width => '3%'}
+          %td{:width => '20%'} Date
+          %td{:width => '55%'} Description
+          %td.dataTable__moneyCell{:width => '15%'} Amount
+      %tbody
+        - if @lines.empty?
+          %tr
+            %td.dataTable__noData{:colspan => 4} There are no transactions for this month & account yet.
+        - else
+          - for line in @lines
+            %tr
+              %td= check_box_tag "lines[]", line.uuid, false, :disabled => !!line.recurring_parent
+              %td= line.date.to_s(:long)
+              %td
+                %p= link_to line.description, edit_line_path(budget, line, :return_to => request.fullpath)
+                - if line.recurring_parent
+                  %p.dataTable__recurText Recurring Item &mdash; started #{line.recurring_parent.date.to_s(:long)}
+              %td.dataTable__moneyCell= number_with_precision line.amount, :precision => 2, :delimiter => ','
+      %tfoot
+        %tr
+          %td{:colspan => 3}
+          %td.dataTable__moneyCell= number_with_precision @account.balance_for_month(@period, params[:month].to_i), :precision => 2, :delimiter => ','
+
+
+    - unless @lines.empty?
+      %p.dataTable__bulkActionBox.js-bulkActionsBox.u-hidden
+        = select_tag 'bulk_action', options_for_select([['Choose an action:', 'none'], ['Delete selected items', 'delete'], ['Move to next month', 'move_forward'], ['Move to previous month', 'move_back']])
+        = submit_tag "Go"

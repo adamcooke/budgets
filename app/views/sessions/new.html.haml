@@ -1,0 +1,18 @@
+- @page_title = "Login"
+= display_flash
+.loginForm
+  %h1.loginForm__welcome Welcome to Budgets.
+  %p.loginForm__welcomeText
+    Budgets is a tool to help you manage your budgets & forecasts.
+    Login below to get started.
+  = form_tag do
+    %dl.loginForm__fieldSet
+      %dt.loginForm__label= label_tag 'E-Mail Address'
+      %dd.loginForm__input= text_field_tag 'email_address', '', :class => 'loginForm__inputField', :autofocus => true, :required => true
+      %dt.loginForm__label= label_tag 'Password'
+      %dd.loginForm__input= password_field_tag 'password', '', :class => 'loginForm__inputField', :required => true
+      %dd.loginForm__submit= submit_tag "Login to your account", :class => 'button button--green  button--small'
+
+  %p.loginForm__signupText
+    If you don't already have a Budgets account, you can
+    #{link_to 'create one right now', signup_path(:return_to => request.fullpath)}.

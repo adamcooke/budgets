@@ -1,0 +1,11 @@
+!!!
+%html.subPage
+  %head
+    %title #{@page_title} - Budgets
+    = javascript_include_tag 'application'
+    = stylesheet_link_tag 'application'
+    = csrf_meta_tags
+    = google_fonts 'Roboto' => [300, 400, 600, 700]
+  %body
+    = yield
+

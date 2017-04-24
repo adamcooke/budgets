@@ -1,0 +1,25 @@
+- @page_title = "Quick Setup for #{budget.name}"
+.paperPage
+  .paperPage__heading
+    %h1.u-heading Quick Setup for #{budget.name}
+
+  %p.u-infoText.u-margin
+    We can help you get your initial budget setup really quickly.
+    Just let us know the details below. Don't worry if you miss
+    something or aren't sure, just leave it blank or make a guess - it
+    can always be changed later if needed.
+
+  = form_tag do
+    - budget.template.fields.values.group_by { |f| f[:account].account_type }.each do |type, fields|
+      %h2.u-heading.u-margin= t("setup.#{budget.budget_type}.section_titles.#{type}")
+      %table.setupTable.u-margin
+        %tbody
+          - for field in fields
+            %tr
+              %td.setupTable__title= t("setup.#{budget.budget_type}.fields.#{field[:name]}.title")
+              %td.setupTable__description= t("setup.#{budget.budget_type}.fields.#{field[:name]}.description")
+              %td.setupTable__input
+                = text_field_tag "values[#{field[:name]}]", @values[field[:name].to_s].try(:first).try(:amount), :placeholder => '0.00'
+
+    %p.paperPage__footer.u-align-right
+      = submit_tag "Setup my budget", :class => 'button button--green', :data => {:disable_with => "Please wait..."}

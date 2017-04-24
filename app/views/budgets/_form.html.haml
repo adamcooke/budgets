@@ -1,0 +1,27 @@
+= form_for @budget do |f|
+  = f.error_messages
+  .fieldSet.u-margin
+    .fieldSet__field
+      .fieldSet__label= f.label :name
+      .fieldSet__input= f.text_field :name, :autofocus => true, :required => true, :class => 'fieldSet__inputField'
+
+    - if @budget.new_record?
+      .fieldSet__field
+        .fieldSet__label= f.label :create_mode, "How do you want your budget to be setup initially?"
+        .fieldSet__input
+          = f.select :create_mode, Budget::CREATE_MODES.map { |m| [t("create_modes.#{m}"), m]}, {}, :class => "fieldSet__selectField js-toggler", :data => {:target => '.js-budgetType', :value => 'empty'}
+      .fieldSet__field.js-budgetType
+        .fieldSet__label= f.label :budget_type, "What type of budget do you want to create?"
+        .fieldSet__input
+          = f.select :budget_type, Budget::TYPES.map { |m| [t("budget_types.#{m}"), m]}, {}, :class => "fieldSet__selectField"
+    - else
+      .fieldSet__field
+        .fieldSet__label= f.label :cumulative_totals, "Should cumulative totals be displayed?"
+        .fieldSet__input= f.select :cumulative_totals, [["Yes - display them", true], ["No - do not display them", false]], {}, :class => 'fieldSet__selectField'
+
+  .paperPage__footer.buttonSet
+    - if @budget.persisted?
+      %span.u-float-right= link_to "Delete", budget_path(@budget), :class => 'button button--red', :method => :delete, :data => {:confirm => "Are you sure you want to delete this budget and all data within it?"}
+
+    = f.submit "Save Budget", :class => 'button button--green', :data => {:disable_with => "Saving Budget..."}
+    = link_to "Cancel", budgets_path, :class => "button"

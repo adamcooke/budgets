@@ -1,0 +1,22 @@
+.paperPage {
+  background:#ffffff;
+  width:800px;
+  padding:35px;
+  margin:auto;
+  border:1px solid #bbb;
+  box-shadow:2px 2px 15px rgba(0,0,0,0.2);
+}
+
+.paperPage__heading {
+  background:#f8f8f8;
+  padding:25px 35px;
+  margin:-35px -35px 25px -35px;
+  border-bottom:1px solid #ddd;
+}
+
+.paperPage__footer {
+  background:#f8f8f8;
+  padding:25px 35px;
+  margin:0 -35px -35px -35px;
+  border-top:1px solid #ddd;
+}

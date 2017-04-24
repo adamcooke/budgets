@@ -1,0 +1,24 @@
+.paperPage
+  %h1.paperPage__heading.u-heading= @page_title = "Manage Periods for #{budget.name}"
+
+  %table.dataTable.u-margin
+    %thead
+      %tr
+        %td{:width => "30%"} Name
+        %td{:width => "40%"} Period
+        %td{:width => "20%"} Length
+        %td{:width => "10%"}
+    %tbody
+      - for period in @periods
+        %tr
+          %td= link_to period.name, edit_period_path(budget, period)
+          %td
+            #{period.starts_on.to_s(:long)} &rarr; #{period.ends_on.to_s(:long)}
+          %td= pluralize period.length_in_months, 'month'
+          %td.u-align-right= link_to "View Grid", grid_path(budget, :period => period)
+      - if @periods.empty?
+        %tr
+          %td.dataTable__noData{:colspan => 3}
+            There are no periods yet.
+
+  %p.paperPage__footer= link_to "Add new period", new_period_path(budget), :class => 'button button--green'

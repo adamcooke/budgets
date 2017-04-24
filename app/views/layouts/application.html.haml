@@ -1,0 +1,23 @@
+!!!
+%html
+  %head
+    %title #{@page_title} - Budgets
+    = javascript_include_tag 'application'
+    = stylesheet_link_tag 'application'
+    = csrf_meta_tags
+    = google_fonts 'Roboto' => [300, 400, 600, 700]
+  %body
+    %header.mainHeader
+      %h1.mainHeader__logo
+        = budget.is_a?(Budget) ? budget.name : "Budgets"
+      %ul.mainHeader__nav
+        %li= link_to "Home", root_path
+        - if budget.is_a?(Budget)
+          %li= link_to "The Grid", grid_path(budget)
+          %li= link_to "Periods", periods_path(budget)
+          %li= link_to "Accounts", accounts_path(budget)
+        %li= link_to "Profile", profile_path
+        %li= link_to "Logout", logout_path, :method => :delete
+    = display_flash
+    .pageContent
+      = yield

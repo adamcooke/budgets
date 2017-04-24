@@ -1,0 +1,60 @@
+.dataTable {
+  width:100%;
+  font-size:13px;
+  tr td {
+    padding:6px 0;
+  }
+  thead {
+    tr {
+      td {
+        border-bottom:1px solid #000;
+        font-weight:bold;
+      }
+    }
+  }
+  tfoot {
+    tr {
+      td {
+        border-top:2px solid #000;
+        font-weight:bold;
+      }
+    }
+  }
+
+  tr {
+    td {
+      border-bottom:1px solid #efefef
+    }
+
+    td.dataTable__moneyCell {
+      text-align: right;
+    }
+  }
+}
+
+.dataTable__noData {
+  text-align: center;
+  color:#999;
+  font-size:16px;
+  font-style:italic;
+  padding:50px 0 !important;
+}
+
+.dataTable__bulkActionBox {
+  background:#efefef;
+  padding:10px 20px;
+  border-radius:0 0 5px 5px;
+  select {
+    margin-right:10px;
+  }
+}
+
+.dataTable__recurText {
+  color:#55B157;
+  margin-top:6px;
+  font-size:11px;
+  font-style:italic;
+  background:image-url('recur.svg') no-repeat 0 1px;
+  padding-left:23px;
+  background-size:18px;
+}

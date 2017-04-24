@@ -1,0 +1,71 @@
+.loginForm {
+  border-radius:26px;
+  width:350px;
+  margin:100px auto;
+}
+
+.loginForm__welcome {
+  text-align: center;
+  font-weight:300;
+  font-size:22px;
+  margin-bottom:10px;
+}
+
+.loginForm__welcomeText {
+  margin-bottom:50px;
+  text-align: center;
+  opacity: 0.3;
+  line-height:1.5;
+}
+
+.loginForm__fieldSet {
+  width:80%;
+  margin:auto;
+  text-align: center;
+}
+
+.loginForm__label {
+  margin-bottom:5px;
+  color:#77858b;
+  text-transform: uppercase;
+  font-size:12px;
+}
+
+.loginForm__inputField {
+  margin-bottom:20px;
+  background:#252a2c;
+  border:0;
+  font:inherit;
+  border-radius:6px;
+  font-size:17px;
+  width:100%;
+  padding:8px 15px;
+  color:#fff;
+  text-align: center;
+}
+
+.loginForm__inputField--double {
+  width:calc(50% - 5px);
+  float:left;
+  margin-right:5px;
+  &:last-child {
+    margin-left:5px;
+    margin-right:0;
+  }
+}
+
+.loginForm__submit {
+  text-align:right;
+  .button {
+    margin-left:5px;
+  }
+}
+
+.loginForm__signupText {
+  text-align: center;
+  width:80%;
+  margin:auto;
+  line-height:1.5;
+  opacity: 0.6;
+  margin-top:30px;
+}

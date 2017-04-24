@@ -1,0 +1,106 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+
+en:
+  hello: "Hello world"
+  create_modes:
+    empty: Create an empty budget - I'll start from scratch
+    basic: Use a default set of categories to save me time
+    example: Include example financial data so I can play with the software
+  budget_types:
+    business: I'd like to make a budget for my business
+    personal: I'd like to make a personal budget
+
+  setup:
+    personal:
+      section_titles:
+        incoming: Money that you receive
+        outgoing: Money that you spend
+      fields:
+        salary:
+          title: Salary
+          description:
+            How much money do you receive from your normal employments. This is
+            most likely the value from your latest payslip.
+        tips:
+          title: "Tips & Bonuses"
+          description:
+            Do you have any regular bonuses or tips which you receive every month?
+        interest:
+          title: Interest Received
+          description:
+            If you have any savings accounts, do you receive any interest every month from
+            these accounts?
+        gas:
+          title: Gas
+          description:
+            How much do you spend each month on Gas?
+        electricity:
+          title: Electricity
+          description:
+            How much do you spend each month on Electricity?
+        water:
+          title: Water
+          description:
+            How much do you spend each month on Water for your home?
+        mobile:
+          title: Mobile Phone
+          description:
+            Do you have a mobile phone? If so, enter your monthly payment otherwise
+            you can leave this blank.
+        internet:
+          title: Telephone & Internet
+          description:
+            Do you have a phone line or internet connection at home? Enter the cost
+            of any line rental and internet connection charges here.
+        rent_mortgage:
+          title: Rent/Mortgage
+          description:
+            How much do you pay each month in rent or towards a mortgage?
+        tax:
+          title: Taxes
+          description:
+            Do you pay any tax each month? Perhaps a council tax?
+        home_insurance:
+          title: Home Insurance
+          description:
+            How much do you pay for your home insurance? Include any insurance for
+            your building and any contents.
+        life_insurance:
+          title: Life Insurance
+          description:
+            Do you have any life insurance? Enter your monthly life insurance premiums.
+        health_insurance:
+          title: Health Insurance
+          description:
+            Do you have any health insurance? Enter your monthly health insurance premiums.
+        vehicle_fuel:
+          title: Fuel for Vehicles
+          description:
+            Do you have a car or bike? How much do you spend on fuel for it each month?
+        vehicle_insurance:
+          title: Vehicle Insurance
+          description:
+            How much do you pay each month for insurance for your car/bike/boat/plane/trains?
+        vehicle_servicing:
+          title: Vehicle Servicing
+          description:
+            How much do you pay each month to service your vehicles?

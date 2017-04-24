@@ -1,0 +1,40 @@
+.button {
+  background:transparent;
+  font-weight:600;
+  text-decoration: none;
+  padding:8px 18px;
+  display:inline-block;
+  border:2px solid;
+  border-radius:100px;
+  line-height:1;
+  vertical-align: middle;
+}
+
+.button--green {
+  color:#7dc82c;
+}
+
+.button--red {
+  color:#f80c33;
+}
+
+.button--greyBlue {
+  color:#5c6468
+}
+
+.button--small {
+  padding:6px 13px;
+  font-size:12px;
+}
+
+.buttonSet--onRight {
+  .button {
+    margin-left:5px;
+  }
+}
+
+.buttonSet {
+  .button {
+    margin-right:5px;
+  }
+}

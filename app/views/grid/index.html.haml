@@ -1,0 +1,60 @@
+- @page_title = "Overview for #{budget.name}"
+
+- if @period.lines.empty? && @accounts.size > 0 && budget.template.fields.size > 0
+  %p.noticeBox.noticeBox--green.u-margin
+    <b>Get started quickly!</b> Use our #{link_to 'quick setup wizard', setup_path(budget)} to
+    quickly add some initial numbers to your budget.
+
+%table.overviewGrid
+  %thead
+    %tr
+      %td.overviewGrid__monthNumberCell
+      - @period.months.size.times do |i|
+        %td.overviewGrid__monthNumberCell Month #{i + 1}
+    %tr
+      %td.overviewGrid__monthTitleCell{:width => "20%"}
+      - for month in @period.months
+        %td.overviewGrid__monthTitleCell{:width => "#{80.0 / @period.months.size}%", :class => (Date.today >= month && Date.today <= month.end_of_month ? 'is-now' : '')}
+          = month.strftime("%b")
+
+    - if budget.cumulative_totals?
+      %tr
+        %td Cumulative Profit/Loss
+        - for month in @period.months
+          %td.overviewGrid__moneyCell.overviewGrid__cumPLCell
+            = profit_loss @period.profit_on_date(month.end_of_month)
+
+    %tr
+      %td Monthly Profit/Loss
+      - @period.length_in_months.times do |i|
+        %td.overviewGrid__moneyCell= profit_loss @period.profit_for_month(i + 1)
+
+  %tbody
+    - ['incoming', 'outgoing'].each do |type|
+      %tr.overviewGrid__monthlyRunTotalRow{:class => "overviewGrid__#{type}HeadingRow"}
+        %td.overviewGrid__accountTypeCell{:rowspan => budget.cumulative_totals? ? 2 : 1}
+          %b= type.humanize
+        - @period.months.each_with_index do |month, i|
+          %td.overviewGrid__moneyCell= grid_monetary_value @period.balance_for_month(type.to_sym, i + 1)
+
+      - if budget.cumulative_totals?
+        %tr{:class => "overviewGrid__#{type}MonthlyTotalRow"}
+          - for month in @period.months
+            %td.overviewGrid__moneyCell= grid_monetary_value @period.balance_on_date(type.to_sym, month)
+
+      - if @accounts[type].nil? || @accounts[type].empty?
+        %tr
+          %td.overviewGrid__noAccountsCell{:colspan => @period.length_in_months + 1}
+            There are no #{type} accounts configured.
+            #{link_to "Add an account?", new_account_path(budget, :type => type, :return_to => request.fullpath)}
+
+      - else
+        - for account in @accounts[type]
+          %tr.overviewGrid__accountRow
+            %td
+              = account.name
+            - @period.months.each_with_index do |month, i|
+              %td.overviewGrid__moneyCell{}
+                = link_to grid_monetary_value(account.balance_for_month(@period, i + 1)), account_path(budget, account, :month => i + 1, :period => @period)
+
+

@@ -1,0 +1,18 @@
+.paperPage
+  %h1.paperPage__heading.u-heading= @page_title = "Manage Accounts for #{budget.name}"
+
+  .row.u-margin
+    .col.col--10
+      %h2.u-subHeading.u-margin Incoming Accounts
+      %ul.standardList
+        - for account in (@accounts['incoming'] || [])
+          %li= link_to account.name, edit_account_path(budget, account, :return_to => request.fullpath)
+
+    .col.col--10
+      %h2.u-subHeading.u-margin Outgoing Accounts
+      %ul.standardList
+        - for account in (@accounts['outgoing'] || [])
+          %li= link_to account.name, edit_account_path(budget, account, :return_to => request.fullpath)
+
+  .paperPage__footer
+    %p= link_to "Add new account", new_account_path(budget, :return_to => request.fullpath), :class => 'button button--green'

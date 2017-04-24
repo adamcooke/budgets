@@ -1,0 +1,39 @@
+//
+// Overlay
+//
+div.niftyOverlay {
+  position:fixed;
+  background:rgba(0,0,0,0.5);
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  display:none;
+  z-index:50;
+  overflow-y: scroll;
+}
+
+//
+// An invisible verison of the overlay
+//
+div.niftyOverlay.invisible {
+  background:transparent;
+}
+
+body.niftyDialog-open {
+  overflow-y: hidden;
+}
+
+//
+// Dialog
+//
+div.niftyDialog {
+  display:none;
+  position:relative;
+  width:600px;
+  margin:100px auto;
+  margin-bottom: 100px !important;
+  background:#fff;
+  padding:30px;
+  box-shadow:0 0 70px rgb(0,0,0);
+}

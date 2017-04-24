@@ -1,0 +1,70 @@
+.fieldSet {
+  border-bottom:1px solid #ddd;
+}
+
+.fieldSet__field {
+  padding:15px;
+  border:1px solid #ddd;
+  border-bottom:0;
+  background:#f9f9f9;
+
+  .fieldSet__group & {
+    float: left;
+    width: 50%;
+
+    & + .fieldSet__field {
+      border-left: 0;
+    }
+  }
+}
+
+.fieldSet__field:active,
+.fieldSet__field.is-focused {
+  background: #fffbdf;
+}
+
+.fieldSet__label {
+  font-size:12px;
+  text-transform: uppercase;
+  color:#999;
+  margin-bottom:3px;
+}
+
+.fieldSet__inputField {
+  background:none;
+  border:0;
+  font-size:20px;
+  font-weight:600;
+  width:100%;
+
+  &:-moz-ui-invalid:not(output),
+  &:-moz-ui-invalid:-moz-focusring:not(output) {
+    box-shadow: none;
+  }
+}
+
+.fieldSet__selectField {
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  background: transparent image-url("dropdown.svg") 100% 50%/24px auto no-repeat;
+  border: 0;
+  cursor: pointer;
+  display: block;
+  font: inherit;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0;
+  outline: 0;
+  padding: 0 29px 0 0;
+  width: 100%;
+
+  &:-moz-focusring {
+    color: transparent;
+    text-shadow: 0 0 0 #000;
+  }
+
+  @-moz-document url-prefix() {
+    margin-left: -5px;
+  }
+}

@@ -1,0 +1,26 @@
+.paperPage
+  %h1.paperPage__heading.u-heading Your Details
+  = form_for @user, :url => profile_path do |f|
+    = f.error_messages
+    .fieldSet.u-margin
+      .fieldSet__group.clearfix
+        .fieldSet__field
+          .fieldSet__label= f.label :first_name
+          .fieldSet__input= f.text_field :first_name, :class => 'fieldSet__inputField', :required => true
+        .fieldSet__field
+          .fieldSet__label= f.label :last_name
+          .fieldSet__input= f.text_field :last_name, :class => 'fieldSet__inputField', :required => true
+      .fieldSet__field
+        .fieldSet__label= f.label :email_address
+        .fieldSet__input= f.text_field :email_address, :class => 'fieldSet__inputField', :required => true
+      .fieldSet__group.clearfix
+        .fieldSet__field
+          .fieldSet__label= f.label :password, "Change Password?"
+          .fieldSet__input= f.password_field :password, :class => 'fieldSet__inputField'
+        .fieldSet__field
+          .fieldSet__label= f.label :password_confirmation, "Confirm your new password"
+          .fieldSet__input= f.password_field :password_confirmation, :class => 'fieldSet__inputField'
+
+    %p.buttonSet.paperPage__footer
+      = f.submit "Save details", :class => 'button button--green'
+      = link_to "Cancel", root_path, :class => 'button'
